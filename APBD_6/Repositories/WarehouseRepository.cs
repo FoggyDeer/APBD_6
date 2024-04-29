@@ -24,10 +24,9 @@ public class WarehouseRepository : IWarehouseRepository
         
         var dr = await cmd.ExecuteReaderAsync();
         
-        Product product = null!;
         if (await dr.ReadAsync())
         {
-            product = new Product
+            return new Product
             {
                 IdProduct = (int)dr["IdProduct"],
                 Name = dr["Name"].ToString(),
@@ -36,7 +35,7 @@ public class WarehouseRepository : IWarehouseRepository
             };
         }
         
-        return product;
+        return null;
     }
 
     public async Task<Warehouse?> GetWarehouse(long id)
@@ -51,10 +50,9 @@ public class WarehouseRepository : IWarehouseRepository
         
         var dr = await cmd.ExecuteReaderAsync();
         
-        Warehouse warehouse = null!;
         if (await dr.ReadAsync())
         {
-            warehouse = new Warehouse
+            return new Warehouse
             {
                 IdWarehouse = (int)dr["IdWarehouse"],
                 Name = dr["Name"].ToString(),
@@ -62,7 +60,7 @@ public class WarehouseRepository : IWarehouseRepository
             };
         }
         
-        return warehouse;
+        return null;
     }
 
     public async Task<Order?> GetOrderByAmountAndProductId(int amount, long idProduct)
@@ -79,10 +77,9 @@ public class WarehouseRepository : IWarehouseRepository
         
         var dr = await cmd.ExecuteReaderAsync();
         
-        Order order = null!;
         if (await dr.ReadAsync())
         {
-            order = new Order()
+            return new Order()
             {
                 IdOrder = (int)dr["IdOrder"],
                 IdProduct = (int)dr["IdProduct"],
@@ -92,7 +89,7 @@ public class WarehouseRepository : IWarehouseRepository
             };
         }
         
-        return order;
+        return null;
     }
 
     public async Task<ProductWarehouse?> GetCompletedOrderById(long orderId)
@@ -109,10 +106,9 @@ public class WarehouseRepository : IWarehouseRepository
         
         var dr = await cmd.ExecuteReaderAsync();
         
-        ProductWarehouse product = null!;
         if (await dr.ReadAsync())
         {
-            product = new ProductWarehouse
+            return new ProductWarehouse
             {
                 IdProductWarehouse = (int)dr["IdProductWarehouse"],
                 IdWarehouse = (int)dr["IdWarehouse"],
@@ -124,7 +120,7 @@ public class WarehouseRepository : IWarehouseRepository
             };
         }
         
-        return product;
+        return null;
     }
     
     public async Task<Order?> UpdateFulfilledAt(int orderId, DateTime dateTime)
@@ -145,10 +141,9 @@ public class WarehouseRepository : IWarehouseRepository
         
         var dr = await cmd.ExecuteReaderAsync();
         
-        Order order = null!;
         if (await dr.ReadAsync())
         {
-            order = new Order
+            return new Order
             {
                 IdOrder = (int)dr["IdOrder"],
                 IdProduct = (int)dr["IdProduct"],
@@ -158,7 +153,7 @@ public class WarehouseRepository : IWarehouseRepository
             };
         }
         
-        return order;
+        return null;
     }
     
     public async Task<ProductWarehouse> AddProduct(ProductWarehouse productWarehouse)
@@ -183,10 +178,9 @@ public class WarehouseRepository : IWarehouseRepository
         
         var dr = await cmd.ExecuteReaderAsync();
         
-        ProductWarehouse product = null!;
         if (await dr.ReadAsync())
         {
-            product = new ProductWarehouse
+            return new ProductWarehouse
             {
                 IdProductWarehouse = (int)dr[0],
                 IdWarehouse = productWarehouse.IdWarehouse,
@@ -198,6 +192,6 @@ public class WarehouseRepository : IWarehouseRepository
             };
         }
 
-        return product;
+        return null!;
     }
 }

@@ -7,7 +7,7 @@ namespace APBD_6.Controllers;
 
 
 [ApiController]
-[Route("api/warehouses")]
+[Route("api/product_warehouses")]
 public class WarehouseController : ControllerBase
 {
     private readonly IWarehouseService _warehouseService;
@@ -23,13 +23,13 @@ public class WarehouseController : ControllerBase
         var product = await _warehouseService.GetProduct(productWarehouseData.IdProduct);
         if (product == null)
         {
-            return NotFound($"Product with id {productWarehouseData.IdProduct} not found");
+            return NotFound($"Product with id {productWarehouseData.IdProduct} was not found");
         }
 
         var warehouse = await _warehouseService.GetWarehouse(productWarehouseData.IdWarehouse);
         if (warehouse == null)
         {
-            return NotFound($"Warehouse with id {productWarehouseData.IdWarehouse} not found");
+            return NotFound($"Warehouse with id {productWarehouseData.IdWarehouse} was not found");
         }
         
         if (productWarehouseData.Amount <= 0)
